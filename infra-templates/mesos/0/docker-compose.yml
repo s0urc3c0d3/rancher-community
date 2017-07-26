@@ -3,6 +3,9 @@ zookeeper:
   labels:
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.sidekicks: zookeeper-data
+  ports:
+  - "2181:2181"
+  - "3888:3888"
   volumes_from:
   - zookeeper-data
 zookeeper-data:
