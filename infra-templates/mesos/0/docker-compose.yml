@@ -30,7 +30,7 @@ mesos-master:
   - /var/log/mesos:/var/log/mesos
   - /var/tmp/mesos:/var/tmp/mesos
 mesos-slave:
-  image: gdwornicki/mesos-slave:latest
+  image: gdwornicki/mesos-slave:1.2.1
   environment:
     SLAVE_PORT: 5051
   ports:
