@@ -44,6 +44,6 @@ mesos-slave:
   - /data
   - /var/log/mesos:/var/log/mesos
   - /var/tmp/mesos:/var/tmp/mesos
-  - /sys:/sys
-  - /sys/fs/cgroup:/sys/fs/cgroup
   privileged: true
+#  - /sys:/sys
+#  - /sys/fs/cgroup:/sys/fs/cgroup
