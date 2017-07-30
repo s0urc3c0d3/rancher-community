@@ -24,7 +24,9 @@ mesos-master:
   ports:
   - "5050:5050"
   labels:
+    mesos: master
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    io.rancher.scheduler.affinity:container_label_soft_ne: mesos=slave
   volumes:
   - /data
   - /var/log/mesos:/var/log/mesos
@@ -36,9 +38,9 @@ mesos-slave:
   ports:
   - "5051:5051"
   labels:
-    io.rancher.container.hostname_override: container_name
+    mesos: master
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    io.rancher.scheduler.global: "true"
+    io.rancher.scheduler.affinity:container_label_soft_ne: mesos=slave
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
   - /data
