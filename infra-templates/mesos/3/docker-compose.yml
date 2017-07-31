@@ -1,5 +1,5 @@
 zookeeper:
-  image: busybox/zookeeper:latest
+  image: gdwornicki/zookeeper:latest
   labels:
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.sidekicks: zookeeper-data
