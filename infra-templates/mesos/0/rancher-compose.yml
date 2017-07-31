@@ -1,5 +1,5 @@
 .catalog:
-  version: v1.2.1
+  version: v1.3.0
   minimum_rancher_version: v1.2.0-pre4-rc1
   questions:
   - variable: ZOOKEEPER_SCALE

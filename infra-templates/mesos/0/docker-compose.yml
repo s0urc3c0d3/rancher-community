@@ -15,7 +15,7 @@ zookeeper-data:
   volumes:
   - /data
 mesos-master:
-  image: gdwornicki/mesos-master:1.2.1
+  image: gdwornicki/mesos-master:1.3.0
   environment:
     MESOS_CLUSTER: Rancher
     MESOS_QUORUM: 2
@@ -24,30 +24,27 @@ mesos-master:
   ports:
   - "5050:5050"
   labels:
-    mesos: master
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    io.rancher.scheduler.affinity:container_label_soft_ne: mesos=slave
   volumes:
   - /data
   - /var/log/mesos:/var/log/mesos
   - /var/tmp/mesos:/var/tmp/mesos
 mesos-slave:
-  image: gdwornicki/mesos-slave:1.2.1
+  image: gdwornicki/mesos-slave:1.3.0
   environment:
     SLAVE_PORT: 5051
   ports:
   - "5051:5051"
   labels:
-    mesos: master
+    io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    io.rancher.scheduler.affinity:container_label_soft_ne: mesos=slave
+    io.rancher.scheduler.global: "true"
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
   - /data
   - /var/log/mesos:/var/log/mesos
   - /var/tmp/mesos:/var/tmp/mesos
+  - /sys:/sys
   - /sys/fs/cgroup:/sys/fs/cgroup
   - /sys/fs/cgroup/systemd:/sys/fs/cgroup/systemd
   privileged: true
-#  - /sys:/sys
-#  - /sys/fs/cgroup:/sys/fs/cgroup
