@@ -5,6 +5,8 @@ zookeeper:
     io.rancher.sidekicks: zookeeper-data
   volumes_from:
   - zookeeper-data
+  ports:
+  - "8181:8181"
 zookeeper-data:
   image: busybox
   entrypoint: /bin/true
