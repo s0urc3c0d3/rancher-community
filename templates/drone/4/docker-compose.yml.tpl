@@ -37,7 +37,7 @@ services:
       DRONE_SECRET: ${drone_secret}
       DRONE_OPEN: ${drone_open}
 {{- if (.Values.drone_admin)}}
-      DRONE_ADMIN: ${drone_admins}
+      DRONE_ADMIN: ${drone_admin}
 {{- end}}
 {{- if (.Values.drone_orgs)}}
       DRONE_ORGS: ${drone_orgs}
@@ -62,7 +62,7 @@ services:
 {{- end}}
 {{- if eq .Values.drone_driver "GitLab"}}
       DRONE_GITLAB: true
-      DRONE_GITLAB_CLIENT: ${drone_driver_secret}
+      DRONE_GITLAB_CLIENT: ${drone_driver_client}
       DRONE_GITLAB_SECRET: ${drone_driver_secret}
       DRONE_GITLAB_URL: ${drone_driver_url}
 {{- end}}
